@@ -2,11 +2,6 @@
 
 use Illuminate\Support\Facades\Facade;
 
-// TODO-0-0 Si VSCode est utilisé (IDE recommendé), installer les extensions suivantes (depuis l'onglet extension de VSCode) :
-// - Laravel Extension Pack
-// - PHP Debug
-// - PHP Intelephense
-
 return [
 
     /*
