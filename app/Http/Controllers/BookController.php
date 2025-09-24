@@ -16,7 +16,7 @@ class BookController extends Controller
         $pagination = 5;
 
         // Pagination, must display links in view!
-        return view('books/index', ['books' => Book::paginate($pagination)]);
+        return view('books/index', ['title' => 'Books', 'books' => Book::paginate($pagination)]);
     }
 
     /**
@@ -24,7 +24,7 @@ class BookController extends Controller
      */
     public function create()
     {
-        return view('books/create');
+        return view('books/create', ['title' => 'Add a book']);
     }
 
     /**
@@ -50,7 +50,7 @@ class BookController extends Controller
      */
     public function show(Book $book)
     {
-        return view('books/show', ['book' => $book]);
+        return view('books/show', ['title' => 'Show "' . $book->title . '"', 'book' => $book]);
     }
 
     /**
@@ -58,7 +58,7 @@ class BookController extends Controller
      */
     public function edit(Book $book)
     {
-        return view('books/edit', ['book' => $book]);
+        return view('books/edit', ['title' => 'Edit "' . $book->title . '"', 'book' => $book]);
     }
 
     /**
