@@ -20,6 +20,15 @@ use Illuminate\Support\Facades\Route;
 //...->name($route_name) gives the name that can be used in view using route($route_name)!
 Route::get('/welcome', [WelcomeController::class, 'index'])->name('welcome');
 Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('/books', [BookController::class, 'index'])->name('books');
+
+// Manual way, verbose but explicit
+// Route::get('/books', [BookController::class, 'index'])->name('books.index');
+// Route::get('books/create', [BookController::class, 'create'])->name('books.create');
+// Route::get('/books/{id}', [BookController::class, 'show'])->name('books.show');
+// Route::get('/books/{id}/edit', [BookController::class, 'edit'])->name('books.edit');
+// Route::delete('/books/{id}', [BookController::class, 'destroy'])->name('books.destroy');
+
+// Automatic way, automatic but implicit --> configuration over configuration
+Route::resource('books', BookController::class);
 
 // TODO-7-1 Créer une route pour "order" en s'inspirant de la route "home"

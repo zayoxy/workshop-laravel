@@ -13,7 +13,7 @@ class BookController extends Controller
      */
     public function index()
     {
-        return view('books', ['books' => Book::all()]);
+        return view('books/index', ['books' => Book::all()]);
     }
 
     /**
@@ -21,7 +21,7 @@ class BookController extends Controller
      */
     public function create()
     {
-        //
+        return view('books/create');
     }
 
     /**
@@ -29,38 +29,54 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // https://laravel.com/docs/12.x/eloquent#inserting-and-updating-models
+        $book = new Book();
+
+        $book->title = $request->title;
+        $book->pages = $request->pages;
+        $book->quantity = $request->quantity;
+
+        $book->save();
+
+        return redirect()->route('books.index')->with('message', 'Book successfully created');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Book $book)
     {
-        //
+        return view('books/show', ['book' => $book]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Book $book)
     {
-        //
+        return view('books/edit', ['book' => $book]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Book $book)
     {
-        //
+        $book->title = $request->title;
+        $book->pages = $request->pages;
+        $book->quantity = $request->quantity;
+
+        $book->save();
+
+        return redirect()->route('books.index')->with('message', 'Book successfully updated');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Book $book)
     {
-        //
+        $book->delete();
+        return redirect()->route('books.index')->with('message', 'Book "' . $book->title . '" successfully deleted');
     }
 }

@@ -21,7 +21,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('books') }}">Books</a>
+                        <a class="nav-link" href="{{ route('books.index') }}">Books</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="TODO to order">Order</a>
@@ -33,6 +33,14 @@
             </div>
         </div>
     </nav>
+
+    @if (Session::has('message'))
+
+    <div class="alert alert-success">
+        {{ Session::get('message') }}
+    </div>
+        
+    @endif
 
     <!-- Will display page content using at_section('content') ... + at_endsection -->
     @yield('content')
