@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Author;
 use App\Models\Book;
 use Illuminate\Http\Request;
 
@@ -24,7 +25,8 @@ class BookController extends Controller
      */
     public function create()
     {
-        return view('books/create', ['title' => 'Add a book']);
+        $authors = Author::all();
+        return view('books/create', ['title' => 'Add a book', 'authors' => $authors]);
     }
 
     /**
@@ -32,11 +34,15 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
+        // https://laravel.com/docs/12.x/requests#old-input
+        $request->flash();
+
         // https://laravel.com/docs/12.x/validation#quick-writing-the-validation-logic
         $validated = $request->validate([
             'title' => 'required|min:5|max:25',
             'pages' => 'required|integer|min:1|max:1000',
-            'quantity' => 'required|integer|min:0|max:100'
+            'quantity' => 'required|integer|min:0|max:100',
+            'author_id' => 'nullable|exists:authors,id|integer'
         ]);
 
         $book = new Book($validated);

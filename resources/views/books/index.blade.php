@@ -11,6 +11,7 @@
             <th scope="col">Title</th>
             <th scope="col">Pages</th>
             <th scope="col">Quantity</th>
+            <th scope="col">Author</th>
             <th scope="col">&nbsp;</th>
         </tr>
     </thead>
@@ -20,6 +21,13 @@
             <td>{{ $book->title }}</td>
             <td>{{ $book->pages }}</td>
             <td>{{ $book->quantity }}</td>
+            <td>
+                @if (!empty($book->author_id))
+                    {{ $book->author->name }} <!-- Eloquent will contains the WHOLE author object -->
+                @else
+                    No author 
+                @endif
+            </td>
             <td>
                 <a class="btn btn-info" href="{{ route('books.show', $book->id) }}">Show</a>
                 <a class="btn btn-primary" href="{{ route('books.edit', $book->id) }}">Edit</a>

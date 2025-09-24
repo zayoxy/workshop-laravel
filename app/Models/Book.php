@@ -12,5 +12,10 @@ class Book extends Model
     //protected int $primaryKey = 'id';
 
     // https://laravel.com/docs/12.x/eloquent#mass-assignment
-    protected $fillable = ['title', 'pages', 'quantity'];
+    protected $fillable = ['title', 'pages', 'quantity', 'author_id'];
+
+    public function author()
+    {
+        return $this->belongsTo(Author::class);
+    }
 }
