@@ -8,15 +8,15 @@ use Illuminate\Http\Request;
 // php artisan --resource make:controller BookController
 class BookController extends Controller
 {
+    const PAGINATION = 5;
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $pagination = 5;
-
-        // Pagination, must display links in view!
-        return view('books/index', ['title' => 'Books', 'books' => Book::paginate($pagination)]);
+        // Pagination, must display links in view! (https://laravel.com/docs/12.x/pagination#paginating-eloquent-results)
+        return view('books/index', ['title' => 'Books', 'books' => Book::paginate(self::PAGINATION)]);
     }
 
     /**
@@ -82,5 +82,13 @@ class BookController extends Controller
     {
         $book->delete();
         return redirect()->route('books.index')->with('message', 'Book "' . $book->title . '" successfully deleted');
+    }
+
+    public function order()
+    {
+        // https://laravel.com/docs/12.x/pagination#paginating-eloquent-results
+
+        $books = Book::where('quantity', '<=', 0)->paginate(self::PAGINATION);
+        return view('books.order', ['title' => 'Order', 'books' => $books]);
     }
 }

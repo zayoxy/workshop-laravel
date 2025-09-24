@@ -1,10 +1,3 @@
-<!-- TODO-7-0 Créer une vue "order.blade.php" permettant de lister les livres à commandés
-    - Repartir de la vue "index" (garder la pagination)
-    - Afficher tous les livres reçu sur cette page (la logique de filtre sera faites dans le contrôleur)
--->
-<!-- TODO-7-3 Ajouter le lien à la vue order dans "layout.app" -->
-<!-- TODO-7-4 Afficher un message spécial si aucun livre ne doit être commandé -->
-
 <!-- TODO-8-7 Afficher l'ID des auteurs sur la page index de "Book" (si pas d'auteur, afficher un message pour l'indiquer) -->
 <!-- TODO-8-8 Générer 3 auteurs depuis phpmyadmin (onglet insérer), les attribuer aux livres et tester pour voir si tout fonctionne -->
 <!-- TODO-8-9 Afficher le nom des auteurs et pas seulement leur ID en modifiant la méthode "index" de "BookController" -->

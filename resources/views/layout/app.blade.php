@@ -24,7 +24,7 @@
                         <a class="nav-link" href="{{ route('books.index') }}">Books</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="TODO to order">Order</a>
+                        <a class="nav-link" href="{{ route('books.order') }}">Order</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('welcome') }}">Welcome</a>
