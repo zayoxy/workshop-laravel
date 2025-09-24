@@ -13,7 +13,10 @@ class BookController extends Controller
      */
     public function index()
     {
-        return view('books/index', ['books' => Book::all()]);
+        $pagination = 5;
+
+        // Pagination, must display links in view!
+        return view('books/index', ['books' => Book::paginate($pagination)]);
     }
 
     /**
@@ -29,13 +32,14 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        // https://laravel.com/docs/12.x/eloquent#inserting-and-updating-models
-        $book = new Book();
+        // https://laravel.com/docs/12.x/validation#quick-writing-the-validation-logic
+        $validated = $request->validate([
+            'title' => 'required|min:5|max:25',
+            'pages' => 'required|integer|min:1|max:1000',
+            'quantity' => 'required|integer|min:0|max:100'
+        ]);
 
-        $book->title = $request->title;
-        $book->pages = $request->pages;
-        $book->quantity = $request->quantity;
-
+        $book = new Book($validated);
         $book->save();
 
         return redirect()->route('books.index')->with('message', 'Book successfully created');

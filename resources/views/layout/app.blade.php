@@ -42,6 +42,19 @@
         
     @endif
 
+    {{-- {{ session('success') }} --}}
+
+    @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+                </ul>
+            </div>
+    @endif
+
     <!-- Will display page content using at_section('content') ... + at_endsection -->
     @yield('content')
 
