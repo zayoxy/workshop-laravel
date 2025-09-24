@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\BookRequest;
 use App\Models\Author;
 use App\Models\Book;
 use Illuminate\Http\Request;
@@ -32,18 +33,13 @@ class BookController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(BookRequest $request)
     {
         // https://laravel.com/docs/12.x/requests#old-input
         $request->flash();
 
         // https://laravel.com/docs/12.x/validation#quick-writing-the-validation-logic
-        $validated = $request->validate([
-            'title' => 'required|min:5|max:25',
-            'pages' => 'required|integer|min:1|max:1000',
-            'quantity' => 'required|integer|min:0|max:100',
-            'author_id' => 'nullable|exists:authors,id|integer'
-        ]);
+        $validated = $request->validated();
 
         $book = new Book($validated);
         $book->save();
@@ -70,12 +66,10 @@ class BookController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Book $book)
+    public function update(BookRequest $request, Book $book)
     {
-        $book->title = $request->title;
-        $book->pages = $request->pages;
-        $book->quantity = $request->quantity;
-
+        $validated = $request->validated();
+        $book = new Book($validated);
         $book->save();
 
         return redirect()->route('books.index')->with('message', 'Book successfully updated');
