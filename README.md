@@ -6,19 +6,30 @@ L'objectif de ce workshop est de transmettre aux étudiants les bases et les bon
 
 Les prochaines étapes permettent de mettre en place l'environnement de développement et de suivre le workshop dans son intégralité.
 
+## Problèmes de permissions avec SAIL
+
+```bash
+sudo chmod o+w -R database/
+sudo chmod o+w -R routes/
+sudo chmod o+w -R resources/
+sudo chmod o+w -R storage/
+```
+
+> https://stackoverflow.com/a/74034446
+
 # Explication des branches
 
 ## Branches générales
 
--   main : la branche contenant la version du README le plus à jour
--   start : la branche contenant le code de départ du workshop Laravel
--   end : la branche contenant le code solution du workshop Laravel
+- main : la branche contenant la version du README le plus à jour
+- start : la branche contenant le code de départ du workshop Laravel
+- end : la branche contenant le code solution du workshop Laravel
 
 ## Branches par année
 
--   xxxx-main : la branche contenant la version du README le plus à jour, réalisé pour les étudiants de l'année xxxx
--   xxxx-start : la branche contenant le code de départ du workshop Laravel, réalisé avec les étudiants de l'année xxxx
--   xxxx-end : la branche contenant le code solution du workshop Laravel, réalisé avec les étudiants de l'année xxxx
+- xxxx-main : la branche contenant la version du README le plus à jour, réalisé pour les étudiants de l'année xxxx
+- xxxx-start : la branche contenant le code de départ du workshop Laravel, réalisé avec les étudiants de l'année xxxx
+- xxxx-end : la branche contenant le code solution du workshop Laravel, réalisé avec les étudiants de l'année xxxx
 
 # Prérequis
 
@@ -33,13 +44,13 @@ Vous pouvez choisir d'**utiliser d'autres outils** que ceux indiqués en dessous
 Gardez en tête que le workshop a été conçu en utilisant les prérequis recommandés en dessus.  
 Si vous souhaitez utiliser d'autres outils, voici ce qu'il vous faut au minimum :
 
--   Un serveur web : PHP built-in server, Apache, Nginx, ...
--   Un système de base de données : MySQL, PostgreSQL, ...
--   PHP version >= 8.1.x
--   Composer version compatible avec la version de PHP installée
--   Un IDE : VS Code (recommandé), PhpStorm ou autre
--   Git : Une version assez récente devrait suffire
--   Suivez les prochains chapitres afin de vous assurer de pouvoir suivre le workshop
+- Un serveur web : PHP built-in server, Apache, Nginx, ...
+- Un système de base de données : MySQL, PostgreSQL, ...
+- PHP version >= 8.1.x
+- Composer version compatible avec la version de PHP installée
+- Un IDE : VS Code (recommandé), PhpStorm ou autre
+- Git : Une version assez récente devrait suffire
+- Suivez les prochains chapitres afin de vous assurer de pouvoir suivre le workshop
 
 > Si Docker vous intéresse, vous pouvez utiliser Laradock. C'est un très bon outil vous fournissant des conteneurs Docker de base pour travailler avec Laravel et Docker.
 
@@ -53,7 +64,7 @@ Récupérez le projet en SSH. Sur GitHub appuyez sur le bouton vert `Code` en ha
 
 ![image](https://user-images.githubusercontent.com/39899628/189638725-1f41f029-20ed-433a-b853-2be9ff92f0c2.png)
 
-> **Important** : Si vous récupérez le projet via SSH, il faudra générer une clé SSH sur votre machine si cela n'est pas déjà fait : [Generating a new SSH key](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#generating-a-new-ssh-key )
+> **Important** : Si vous récupérez le projet via SSH, il faudra générer une clé SSH sur votre machine si cela n'est pas déjà fait : [Generating a new SSH key](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#generating-a-new-ssh-key)
 
 > Et configurer la clé publique sur GitHub : [About addition of SSH keys to your account](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account)
 
@@ -83,10 +94,11 @@ cp .env.example .env
 > Notamment les paramètres `DB_DATABASE`, `DB_USERNAME`, `DB_PASSWORD` et/ou d'autres dépendants de votre configuration locale.
 
 Créez une nouvelle base de données manuellement.
+
 1. Ouvrez le panneau de contrôle XAMPP et démarrez `MySQL` et `Apache` en appuyant sur le bouton `Start` sur chaque ligne.
 2. Toujours sur le panneau de contrôle XAMPP, appuyez sur le bouton `Admin` sur la ligne `MySQL`, cela ouvre PhpMyAdmin sur un navigateur
-2. Cliquez sur "nouvelle base de données"
-3. Nommez-la `workshop-laravel`, assurez-vous également que `utf8mb4_general_ci` soit sélectionné, et appuyez sur "créer".
+3. Cliquez sur "nouvelle base de données"
+4. Nommez-la `workshop-laravel`, assurez-vous également que `utf8mb4_general_ci` soit sélectionné, et appuyez sur "créer".
 
 > Durant le workshop nous n'utiliserons pas le serveur fourni par Apache, mais ici il est nécessaire de  
 > le démarrer quand même, car nous avons besoin de PhpMyAdmin qui est démarré avec le même bouton.  
